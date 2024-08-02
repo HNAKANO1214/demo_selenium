@@ -7,6 +7,7 @@ services:
     ports:
       - 4444:4444
       - 7900:7900
+    container_name: demo_selenium-seleniarm
 
   web:
     build: .
@@ -17,5 +18,21 @@ services:
     ports:
       - "8000:8000"
     depends_on:
+      - db
       - selenium
     container_name: demo_selenium-app
+
+  db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: demo_selenium-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    container_name: demo_selenium-db
+
+volumes:
+  pgdata:
