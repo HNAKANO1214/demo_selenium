@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from myapp.models import Drivers, Races, Teams
+from common.models import Drivers, Races, Teams
 
 
 admin.site.register(Drivers)
