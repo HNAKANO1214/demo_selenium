@@ -1,0 +1,62 @@
+[
+    {
+        "model": "core.ConstructorStandingModel",
+        "pk": 1,
+        "fields": {
+            "constructor": "Red Bull Racing Honda RBPT",
+            "position": 1,
+            "points": 860,
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.ConstructorStandingModel",
+        "pk": 2,
+        "fields": {
+            "constructor": "Mercedes",
+            "position": 2,
+            "points": 409,
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.ConstructorStandingModel",
+        "pk": 3,
+        "fields": {
+            "constructor": "Ferrari",
+            "position": 3,
+            "points": 406,
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.ConstructorStandingModel",
+        "pk": 4,
+        "fields": {
+            "constructor": "Red Bull Racing RBPT",
+            "position": 1,
+            "points": 759,
+            "season": 2022
+        }
+    },
+    {
+        "model": "core.ConstructorStandingModel",
+        "pk": 5,
+        "fields": {
+            "constructor": "Ferrari",
+            "position": 2,
+            "points": 554,
+            "season": 2022
+        }
+    },
+    {
+        "model": "core.ConstructorStandingModel",
+        "pk": 6,
+        "fields": {
+            "constructor": "Ferrari",
+            "position": 3,
+            "points": 515,
+            "season": 2022
+        }
+    }
+]

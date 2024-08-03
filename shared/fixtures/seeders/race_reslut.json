@@ -1,0 +1,62 @@
+[
+    {
+        "model": "core.RaceResultModel",
+        "pk": 1,
+        "fields": {
+            "grand_prix": "Bahrain",
+            "winner": "Max Verstappen",
+            "time": "1:33:56.736",
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.RaceResultModel",
+        "pk": 2,
+        "fields": {
+            "grand_prix": "Bahrain",
+            "winner": "Sergio Perez",
+            "time": "+11.987s",
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.RaceResultModel",
+        "pk": 3,
+        "fields": {
+            "grand_prix": "Saudi Arabian",
+            "winner": "Sergio Perez",
+            "time": "+1:21:14.894",
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.RaceResultModel",
+        "pk": 4,
+        "fields": {
+            "grand_prix": "Saudi Arabian",
+            "winner": "Max Verstappen",
+            "time": "+5.355s",
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.RaceResultModel",
+        "pk": 5,
+        "fields": {
+            "grand_prix": "Bahrain",
+            "winner": "Charles Leclerc",
+            "time": "1:37:33.584",
+            "season": 2022
+        }
+    },
+    {
+        "model": "core.RaceResultModel",
+        "pk": 5,
+        "fields": {
+            "grand_prix": "Bahrain",
+            "winner": "Carlos Sainz",
+            "time": "+5.598s",
+            "season": 2022
+        }
+    }
+]

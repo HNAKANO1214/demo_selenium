@@ -1,0 +1,74 @@
+[
+    {
+        "model": "core.DriverStandingModel",
+        "pk": 1,
+        "fields": {
+            "driver": "Max Verstappen",
+            "position": 1,
+            "nationality": "NED",
+            "team": "Red Bull Racing Honda RBPT",
+            "points": 575,
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.DriverStandingModel",
+        "pk": 2,
+        "fields": {
+            "driver": "Sergio Perez",
+            "position": 2,
+            "nationality": "MEX",
+            "team": "Red Bull Racing Honda RBPT",
+            "points": 285,
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.DriverStandingModel",
+        "pk": 3,
+        "fields": {
+            "driver": "Lewis Hamilton",
+            "position": 3,
+            "nationality": "GBR",
+            "team": "Mercedes",
+            "points": 234,
+            "season": 2023
+        }
+    },
+    {
+        "model": "core.DriverStandingModel",
+        "pk": 4,
+        "fields": {
+            "driver": "Max Verstappen",
+            "position": 1,
+            "nationality": "NED",
+            "team": "Red Bull Racing RBPT",
+            "points": 454,
+            "season": 2022
+        }
+    },
+    {
+        "model": "core.DriverStandingModel",
+        "pk": 5,
+        "fields": {
+            "driver": "Charles Leclerc",
+            "position": 2,
+            "nationality": "MON",
+            "team": "Ferrari",
+            "points": 308,
+            "season": 2022
+        }
+    },
+    {
+        "model": "core.DriverStandingModel",
+        "pk": 6,
+        "fields": {
+            "driver": "Sergio Perez",
+            "position": 3,
+            "nationality": "MEX",
+            "team": "Red Bull Racing RBPT",
+            "points": 305,
+            "season": 2022
+        }
+    }
+]
