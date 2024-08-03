@@ -1,8 +1,8 @@
-# from django.urls import path
+from rest_framework import routers
 
-# from .views import RaceResult
+from .views import ConstructorStandingView, DriverStandingView, RaceResultView
 
-# app_name = "myapp"
-# urlpatterns = [
-#     path('', RaceResult.as_view(), name='race_result'),
-# ]
+router = routers.DefaultRouter()
+router.register('race_reslut', RaceResultView)
+router.register('driver_standing', DriverStandingView)
+router.register('constructor_standing', ConstructorStandingView)
