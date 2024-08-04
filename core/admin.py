@@ -10,17 +10,17 @@ from core.models import (
 
 class ConstructorStandingAdmin(admin.ModelAdmin):
     form = ConstructorStandingForm
-    list_display = ('constructor', 'season', 'position', 'points')
+    exclude = []
 
 
 class DriverStandingForm(admin.ModelAdmin):
     form = DriverStandingForm
-    list_display = ('driver', 'season', 'position', 'nationality', 'team', 'points')
+    exclude = []
 
 
 class RaceResultForm(admin.ModelAdmin):
     form = RaceResultForm
-    list_display = ('grand_prix', 'winner', 'time', 'season')
+    exclude = []
 
 
 admin.site.register(ConstructorStandingModel, ConstructorStandingAdmin)

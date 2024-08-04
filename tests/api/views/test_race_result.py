@@ -40,8 +40,11 @@ class TestRaceResultView(APITestCase):
         url: str = 'http://localhost:8000/api/race_result/'
         data: dict = {
             'grand_prix': 'Test Grand Prix',
+            'race_date': '2024-01-01',
             'winner': 'Test Winner',
-            'time': '1:30:00',
+            'car': 'Test Car',
+            'laps': 50,
+            'race_time': '1:30:00',
             'season': 2024
         }
         response = self.client.post(url, data, format='json')
@@ -54,8 +57,11 @@ class TestRaceResultView(APITestCase):
         url: str = f'http://localhost:8000/api/race_result/{race_result.id}/'
         data: dict = {
             'grand_prix': 'Test Grand Prix Updated',
+            'race_date': '2024-01-02',
             'winner': 'Test Winner Updated',
-            'time': '2:30:00',
+            'car': 'Test Car Updated',
+            'laps': 60,
+            'race_time': '2:30:00',
             'season': 2025
         }
         response = self.client.put(url, data, format='json')

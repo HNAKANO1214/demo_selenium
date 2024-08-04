@@ -9,6 +9,9 @@ RUN apt-get update && \
     wget \
     vim
 RUN pip install --upgrade pip
-COPY requirements/ /app/requirements/
-RUN pip install --no-cache-dir -r requirements/local.txt
+RUN pip install poetry
+ENV PATH /root/.local/bin:$PATH
+RUN poetry config virtualenvs.create false
+COPY /pyproject.toml /app/pyproject.toml
+RUN poetry install --no-root
 COPY . /app/

@@ -1,16 +1,10 @@
 version: '3.8'
 
 services:
-  selenium:
-    image: seleniarm/standalone-chromium:latest
-    shm_size: 2gb
-    ports:
-      - 4444:4444
-      - 7900:7900
-    container_name: demo_selenium-seleniarm
-
-  web:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: dockerfiles/app/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
@@ -18,21 +12,50 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - postgres-db
       - selenium
-    container_name: demo_selenium-app
+    container_name: app
 
-  db:
-    image: postgres
+  postgres-db:
+    image: postgres:latest
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: demo_selenium-db
+      POSTGRES_DB: postgres-db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
-    container_name: demo_selenium-db
+    container_name: postgres-db
+
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin4
+    ports:
+      - 8080:80
+    volumes:
+      - ./dockerfiles/pgadmin4/servers.json:/pgadmin4/servers.json
+      - ./dockerfiles/pgadmin4/preferences.json:/pgadmin4/preferences.json
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_SERVER_JSON_FILE: /pgadmin4/servers.json
+      PGADMIN_PREFERENCES_JSON_FILE: /pgadmin4/preferences.json
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+      PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: 'False'
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: 'False'
+    depends_on:
+      - postgres-db
+
+  selenium:
+    image: seleniarm/standalone-chromium:latest
+    shm_size: 2gb
+    ports:
+      - 4444:4444
+      - 7900:7900
+    container_name: seleniarm
 
 volumes:
   pgdata:
+  pgadmin4:

@@ -4,8 +4,11 @@
         "pk": 1,
         "fields": {
             "grand_prix": "Bahrain",
+            "race_date": "2023-03-05",
             "winner": "Max Verstappen",
-            "time": "1:33:56.736",
+            "car": "Red Bull Racing Honda RBPT",
+            "laps": 57,
+            "race_time": "1:33:56.736",
             "season": 2023
         }
     },
@@ -13,9 +16,12 @@
         "model": "core.RaceResultModel",
         "pk": 2,
         "fields": {
-            "grand_prix": "Bahrain",
+            "grand_prix": "Saudi Arabian",
+            "race_date": "2023-03-19",
             "winner": "Sergio Perez",
-            "time": "+11.987s",
+            "car": "Red Bull Racing Honda RBPT",
+            "laps": 50,
+            "race_time": "1:21:14.894",
             "season": 2023
         }
     },
@@ -23,9 +29,12 @@
         "model": "core.RaceResultModel",
         "pk": 3,
         "fields": {
-            "grand_prix": "Saudi Arabian",
-            "winner": "Sergio Perez",
-            "time": "+1:21:14.894",
+            "grand_prix": "Australia",
+            "race_date": "2023-04-02",
+            "winner": "Max Verstappen",
+            "car": "Red Bull Racing Honda RBPT",
+            "laps": 58,
+            "race_time": "2:32:38.371",
             "season": 2023
         }
     },
@@ -33,9 +42,12 @@
         "model": "core.RaceResultModel",
         "pk": 4,
         "fields": {
-            "grand_prix": "Saudi Arabian",
-            "winner": "Max Verstappen",
-            "time": "+5.355s",
+            "grand_prix": "Azerbaijan",
+            "race_date": "2023-04-30",
+            "winner": "Sergio Perez",
+            "car": "Red Bull Racing Honda RBPT",
+            "laps": 51,
+            "race_time": "1:32:42.436",
             "season": 2023
         }
     },
@@ -44,8 +56,11 @@
         "pk": 5,
         "fields": {
             "grand_prix": "Bahrain",
+            "race_date": "2022-03-20",
             "winner": "Charles Leclerc",
-            "time": "1:37:33.584",
+            "car": "Ferrari",
+            "laps": 57,
+            "race_time": "1:37:33.584",
             "season": 2022
         }
     },
@@ -53,9 +68,12 @@
         "model": "core.RaceResultModel",
         "pk": 5,
         "fields": {
-            "grand_prix": "Bahrain",
-            "winner": "Carlos Sainz",
-            "time": "+5.598s",
+            "grand_prix": "Saudi Arabia",
+            "race_date": "2022-03-27",
+            "winner": "Max Verstappen",
+            "car": "Ferrari",
+            "laps": 50,
+            "race_time": "1:24:19.293",
             "season": 2022
         }
     }
