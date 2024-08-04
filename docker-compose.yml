@@ -12,21 +12,21 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - postgres-db
+      - db
       - selenium
     container_name: app
 
-  postgres-db:
+  db:
     image: postgres:latest
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: postgres-db
+      POSTGRES_DB: db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
-    container_name: postgres-db
+    container_name: db
 
   pgadmin4:
     image: dpage/pgadmin4:latest
@@ -46,7 +46,7 @@ services:
       PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: 'False'
       PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: 'False'
     depends_on:
-      - postgres-db
+      - db
 
   selenium:
     image: seleniarm/standalone-chromium:latest

@@ -10,7 +10,7 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: demo_selenium-db
+          POSTGRES_DB: db
           POSTGRES_USER: user
           POSTGRES_PASSWORD: password
         ports:
