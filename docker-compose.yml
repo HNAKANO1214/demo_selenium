@@ -54,7 +54,7 @@ services:
     ports:
       - 4444:4444
       - 7900:7900
-    container_name: seleniarm
+    container_name: selenium
 
 volumes:
   pgdata:

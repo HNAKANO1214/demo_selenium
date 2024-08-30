@@ -11,3 +11,6 @@ class DriverStandingModel(models.Model):
 
     def __str__(self) -> str:
         return self.driver
+
+    class Meta:
+        db_table = 'driver_standings'

@@ -5,5 +5,5 @@ from core.models import DriverStandingModel
 
 class DriverStandingForm(forms.ModelForm):
     class Meta:
-        models = DriverStandingModel
+        model = DriverStandingModel
         fields = '__all__'

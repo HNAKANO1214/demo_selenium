@@ -15,12 +15,26 @@
 3. **データベースのマイグレーションを実行します。**
 
     ```sh
-    docker exec -it demo_selenium-app python manage.py migrate
+    docker exec -it app python manage.py migrate
 4. **スーパーユーザーを作成します。**
 
     ```sh
-    docker exec -it demo_selenium-app python manage.py createsuperuser
+    docker exec -it app python manage.py createsuperuser
+## マイグレーション
+
+1. **マイグレーションファイル作成**
+
+    ```sh
+    docker exec -it app python manage.py makemigrations <アプリ名>
+2. **マイグレーション実行**
+
+    ```sh
+    docker exec -it app python manage.py migrate <アプリ名>
+3. **ロールバック実行**
+
+    ```sh
+    docker exec -it app python manage.py migrate <アプリ名> <バージョン>
 ## 自動テスト
 
 ```sh
-docker exec -it demo_selenium-app pytest
+docker exec -it app pytest

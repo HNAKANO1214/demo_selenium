@@ -2,7 +2,9 @@ from django.conf import settings
 from django.urls import path, include
 from rest_framework import routers
 
-from .views import ConstructorStandingView, DriverStandingView, RaceResultView, SyncView
+from .views import (
+    ConstructorStandingView, DriverStandingView, RaceResultView,
+)
 
 router = routers.DefaultRouter()
 router.register(r'race_result', RaceResultView)
@@ -15,4 +17,11 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += [path("sync/", SyncView.as_view())]
+    from .views import (
+        SyncConstructorStandingViews, SyncDriverStandingsView, SyncRaceResultsView
+    )
+    urlpatterns += [
+        path("sync_constructor_standings/", SyncConstructorStandingViews.as_view()),
+        path("sync_driver_standings/", SyncDriverStandingsView.as_view()),
+        path("sync_race_results/", SyncRaceResultsView.as_view()),
+    ]

@@ -5,5 +5,5 @@ from core.models import ConstructorStandingModel
 
 class ConstructorStandingForm(forms.ModelForm):
     class Meta:
-        models = ConstructorStandingModel
+        model = ConstructorStandingModel
         fields = '__all__'

@@ -14,4 +14,5 @@ class RaceResultModel(models.Model):
         return self.grand_prix
 
     class Meta:
-        unique_together = (('grand_prix', 'season'),)
+        db_table = 'race_results'
+        unique_together = (('grand_prix', 'race_date', 'season'),)

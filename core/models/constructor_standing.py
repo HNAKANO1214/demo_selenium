@@ -9,3 +9,6 @@ class ConstructorStandingModel(models.Model):
 
     def __str__(self) -> str:
         return self.constructor
+
+    class Meta:
+        db_table = 'constructor_standings'
