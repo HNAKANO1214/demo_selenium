@@ -20,7 +20,7 @@ class RaceResultForm(forms.ModelForm):
         return True
 
     @staticmethod
-    def check_exists_season(season: str) -> None:
-        if RaceResultModel.objects.filter(season=season).exists():
+    def check_exists_season(season: str, grand_prix: str) -> None:
+        if RaceResultModel.objects.filter(season=season, grand_prix=grand_prix).exists():
             return True
         return False

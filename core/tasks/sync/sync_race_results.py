@@ -1,5 +1,5 @@
-# import pycountry
 import logging
+import time
 
 from datetime import datetime
 from selenium.webdriver.common.by import By
@@ -22,10 +22,6 @@ class SyncRaceResults(SyncBase):
             self.initialize_driver()
             # 1950年から2024年までのレース結果を取得
             for year in range(1950, 2025):
-
-                if RaceResultForm.check_exists_season(season=str(year)):
-                    logger.info(f'{year}年のレース結果は既に取得済みです。スキップします')
-                    continue
 
                 race_results = []
                 url = f'https://www.formula1.com/en/results/{year}/races'
@@ -87,8 +83,13 @@ class SyncRaceResults(SyncBase):
                         except Exception as row_e:
                             logger.error(f'グランプリ情報の取得に失敗しました: {row_e}')
 
-                        logger.debug(
-                            f'{country} {date} {winner} {car} {laps} {race_time} {str(year)}')
+                        # logger.debug(
+                        #     f'{str(year)}: {country} {date} {winner} {car} {laps} {race_time}')
+
+                        if RaceResultForm.check_exists_season(
+                                season=str(year), grand_prix=country):
+                            logger.info(f'{year}年 {country}GPの結果は既に取得済みです。スキップします')
+                            continue
 
                         if not RaceResultForm.check_unique(
                             race_results=race_results,
@@ -110,13 +111,17 @@ class SyncRaceResults(SyncBase):
                             model_instance = form.save(commit=False)
                             race_results.append(model_instance)
                         else:
-                            logger.error(f'取得したグランプリ情報が不正です。: {form.errors}')
+                            logger.error(f'取得したグランプリ情報が不正です: {form.errors}')
 
                 # レース結果を保存
-                try:
-                    RaceResultModel.objects.bulk_create(race_results)
-                except Exception as e:
-                    logger.error(f'データベースエラーが発生しました: {e}')
+                if race_results:
+                    try:
+                        RaceResultModel.objects.bulk_create(race_results)
+                        logger.error(f'{year}年のレース結果を登録しました')
+                    except Exception as e:
+                        logger.error(f'データベースエラーが発生しました: {e}')
+                    finally:
+                        time.sleep(1)
 
         except Exception as e:
             logger.error(f'エラーが発生しました。: {e}')

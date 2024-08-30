@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/app/Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["./wait-for-it.sh", "db:3306", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - .:/app
     tty: true
@@ -17,36 +17,36 @@ services:
     container_name: app
 
   db:
-    image: postgres:latest
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+    build:
+      context: .
+      dockerfile: dockerfiles/db/Dockerfile
+    # restart: always
     ports:
-      - "5432:5432"
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: selenium-db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
+      - db_data:/var/lib/mysql
     container_name: db
 
-  pgadmin4:
-    image: dpage/pgadmin4:latest
-    container_name: pgadmin4
-    ports:
-      - 8080:80
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
     volumes:
-      - ./dockerfiles/pgadmin4/servers.json:/pgadmin4/servers.json
-      - ./dockerfiles/pgadmin4/preferences.json:/pgadmin4/preferences.json
+      - ./docker/php-phpmyadmin.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: password
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-      PGADMIN_SERVER_JSON_FILE: /pgadmin4/servers.json
-      PGADMIN_PREFERENCES_JSON_FILE: /pgadmin4/preferences.json
-      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
-      PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: 'False'
-      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: 'False'
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=user
+      - PMA_PASSWORD=password
+    ports:
+      - 20080:80
     depends_on:
       - db
+    container_name: phpmyadmin
 
   selenium:
     image: seleniarm/standalone-chromium:latest
@@ -57,5 +57,4 @@ services:
     container_name: selenium
 
 volumes:
-  pgdata:
-  pgadmin4:
+  db_data:
