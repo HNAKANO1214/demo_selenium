@@ -5,8 +5,8 @@ class DriverStandingModel(models.Model):
     driver = models.CharField(max_length=50)
     position = models.IntegerField()
     nationality = models.CharField(max_length=50)
-    team = models.CharField(max_length=50)
-    points = models.IntegerField()
+    team = models.CharField(max_length=50, null=True, blank=True, default=None)
+    points = models.FloatField()
     season = models.IntegerField()
 
     def __str__(self) -> str:

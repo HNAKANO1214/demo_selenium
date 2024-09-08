@@ -16,12 +16,12 @@ logger = logging.getLogger(__name__)
 
 class SyncRaceResults(SyncBase):
 
-    def sync(self):
+    def sync(self, since=1950, until=datetime.now().year):
         logger.info('=== Start Sync Race Results ===')
         try:
             self.initialize_driver()
             # 1950年から2024年までのレース結果を取得
-            for year in range(1950, 2025):
+            for year in range(since, until + 1):
 
                 race_results = []
                 url = f'https://www.formula1.com/en/results/{year}/races'
@@ -83,8 +83,8 @@ class SyncRaceResults(SyncBase):
                         except Exception as row_e:
                             logger.error(f'グランプリ情報の取得に失敗しました: {row_e}')
 
-                        # logger.debug(
-                        #     f'{str(year)}: {country} {date} {winner} {car} {laps} {race_time}')
+                        logger.debug(
+                            f'{str(year)}: {country} {date} {winner} {car} {laps} {race_time}')
 
                         if RaceResultForm.check_exists_season(
                                 season=str(year), grand_prix=country):
