@@ -8,11 +8,17 @@ jobs:
 
     services:
       mysql:
-        image: mysql:latest
+        image: mysql:5.7
+        ports:
+          - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD: zergling
-          MYSQL_DATABASE: mysql
-        ports: ['3306:3306']
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: testdb
+        options: >-
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout repository
@@ -32,23 +38,21 @@ jobs:
           pip install -r requirements/local.txt
 
       - name: Apply migrations
+        env:
+          DJANGO_DB_HOST: localhost
+          DJANGO_DB_PORT: 3306
+          DJANGO_DB_NAME: testdb
+          DJANGO_DB_USER: root
+          DJANGO_DB_PASSWORD: rootpassword
         run: |
           python manage.py migrate
-        env:
-          DBENGINE: django.db.backends.mysql
-          DBNAME: mysql
-          DBUSER: root
-          DBPASSWORD: zergling
-          DBHOST: 127.0.0.1
-          DBPORT: $
 
       - name: Run tests with pytest
+        env:
+          DJANGO_DB_HOST: localhost
+          DJANGO_DB_PORT: 3306
+          DJANGO_DB_NAME: testdb
+          DJANGO_DB_USER: root
+          DJANGO_DB_PASSWORD: rootpassword
         run: |
           pytest -s -v
-        env:
-          DBENGINE: django.db.backends.mysql
-          DBNAME: mysql
-          DBUSER: root
-          DBPASSWORD: zergling
-          DBHOST: 127.0.0.1
-          DBPORT: $
