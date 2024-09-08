@@ -10,15 +10,9 @@ jobs:
       mysql:
         image: mysql:latest
         env:
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-        ports:
-          - 3306
-        options: >-
-          --health-cmd "mysqladmin ping -h localhost"
-          --health-interval 20s
-          --health-timeout 10s
-          --health-retries 10
+          MYSQL_ROOT_PASSWORD: zergling
+          MYSQL_DATABASE: mysql
+        ports: ['3306:3306']
 
     steps:
       - name: Checkout repository
@@ -37,14 +31,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements/local.txt
 
-      # MySQLが起動するのを待機
-      - name: Wait for MySQL to be ready
-        run: sleep 3
-
       - name: Apply migrations
         run: |
           python manage.py migrate
+        env:
+          DBENGINE: django.db.backends.mysql
+          DBNAME: mysql
+          DBUSER: root
+          DBPASSWORD: zergling
+          DBHOST: 127.0.0.1
+          DBPORT: $
 
       - name: Run tests with pytest
         run: |
           pytest -s -v
+        env:
+          DBENGINE: django.db.backends.mysql
+          DBNAME: mysql
+          DBUSER: root
+          DBPASSWORD: zergling
+          DBHOST: 127.0.0.1
+          DBPORT: $
