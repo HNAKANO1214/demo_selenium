@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2>2024年 レースランキング</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Grand Prix</th>
+            <th>Date</th>
+            <th>Winner</th>
+            <th>Car</th>
+            <th>Laps</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ranking in rankings %}
+            <tr>
+                <td>{{ ranking.grand_prix }}</td>
+                <td>{{ ranking.race_date }}</td>
+                <td>{{ ranking.winner }}</td>
+                <td>{{ ranking.car }}</td>
+                <td>{{ ranking.laps }}</td>
+                <td>{{ ranking.race_time }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">データがありません。</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock%}

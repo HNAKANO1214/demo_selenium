@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2>2024年 コンストラクターランキング</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Pos</th>
+            <th>Team</th>
+            <th>Pts</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ranking in rankings %}
+            <tr>
+                <td>{{ ranking.position }}</td>
+                <td>{{ ranking.constructor }}</td>
+                <td>{{ ranking.points }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">データがありません。</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock%}

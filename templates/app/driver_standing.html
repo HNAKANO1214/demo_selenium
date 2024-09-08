@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2>2024年 ドライバーランキング</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Pos</th>
+            <th>Driver</th>
+            <th>Nationality</th>
+            <th>Car</th>
+            <th>Pts</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ranking in rankings %}
+            <tr>
+                <td>{{ ranking.position }}</td>
+                <td>{{ ranking.driver }}</td>
+                <td>{{ ranking.nationality }}</td>
+                <td>{{ ranking.team }}</td>
+                <td>{{ ranking.points }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">データがありません。</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock%}
