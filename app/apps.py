@@ -17,7 +17,6 @@ class AppConfig(AppConfig):
             'default': ThreadPoolExecutor(3)
         }
         scheduler = BackgroundScheduler(executors=executors)
-        # 毎日3時に実行するようにスケジュール(+9時間)
         now_year = datetime.now().year
         scheduler.add_job(
             sync_constructor_standings.sync, 'interval', hours=24,
